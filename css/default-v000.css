@@ -1,0 +1,56 @@
+@CHARSET "ISO-8859-1";
+
+/* STUFF */
+* {
+	margin:0;
+	padding:0;
+	font-family: Verdana, Arial, sans-serif;
+}
+body{
+	/*background-color: #FFFDF5;*/
+	background-color: none;
+	overflow-y:scroll;
+	min-height: 100%;
+}
+html {
+	min-height: 100%;
+}
+img {
+	width:100%;	
+}
+
+#wrapper{
+	margin: 0;
+	padding: 0 0 0 0;
+	width: 100%;
+	min-width:67em;
+	height: 100vh;
+	display: table;
+	background: #eaeaea;
+}
+
+.clearer{
+	clear: both;
+}
+
+.hidden{
+    display: none;
+}
+ul {
+    list-style: disc outside none; 
+    margin-left: 0; 
+/*    padding-left: 2em;*/
+}
+ol {
+	margin-left: 0; 
+    padding-left: 2em;
+}
+a {
+	text-decoration:none;
+	color:#703939;
+}
+a:hover {
+	color: #c46464;
+}
+	
+}
