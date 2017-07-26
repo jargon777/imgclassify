@@ -14,10 +14,13 @@ $page_max_img = 50;
 			$location = "img/classified/" . $files[$i];
 			$file_parts = pathinfo($location);
 			$json_location = "img/classified/" . $file_parts["filename"] . ".json";
-			echo '<div style="display:inline-block;"><a style="display:block; text-align:center;" href="index.php?action=unclassify&mode=' . $file_parts["basename"] . '"><img class="preview-img" src="' . $location. '"></img></a>';
+			echo '<div style="display:inline-block; margin:0.5em;"><a style="display:block; text-align:center;" href="index.php?action=unclassify&mode=' . $file_parts["basename"] . '"><img class="preview-img" src="' . $location. '"></img></a>';
 			$json_data = file_get_contents($json_location);
-			echo '<span class="file-item">' . json_decode($json_data, true)["word_classification"] . '</span>';
-			echo '<a class="file-item" href="' . $location . '" target="_blank">[view]</a>';
+			$json_data = json_decode($json_data, true);
+			foreach ($categories as $key => $value) {
+				echo '<span class="file-item">' . $key . ": <i>" . $json_data[$key . "-word"] . '</i></span>';
+			}
+			echo '<a class="file-item" href="' . $location . '" target="_blank">[view larger image]</a>';
 			echo '</div>';
 		}
 	}
