@@ -2,10 +2,15 @@
 if (isset($_GET["img"])) {
 	$img = array();
 	$img["filename"] = $_GET["img"];
-	if (isset ($_POST["class_code"])) {
-		$img["numeric_classification"] = $_POST["class_code"];
+	if (count($_POST) == count($categories) + 1) {
+		// transfer all data into the img
+		foreach ($_POST as $key => $value) { 
+			if ($key == "submit") continue;
+			$key = str_replace('_', ' ', $key);
+			$img[$key . "-numeric"] = $value;
+			$img[$key . "-word"] = $categories[$key][$value];
+		}
 		$img["datetime_classified"] = time();
-		$img["word_classification"] = $classifications[$img["numeric_classification"]];
 		
 		
 		/* MOVE FILE TO CLASSIFIED FOLDER */

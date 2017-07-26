@@ -20,6 +20,7 @@
     border-color: #cccccc;
     border-width: 0.1em;
 	box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+	text-align: center;
 }
 #picture-name{
 	text-align:center;

@@ -1,9 +1,3 @@
-<?php 
-/* DEFAULT MAPS */
-
-$classifications = array("Bare", "Track-Bare", "Partially Snow Covered", "Fully Snow Covered");
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +10,9 @@ $classifications = array("Bare", "Track-Bare", "Partially Snow Covered", "Fully 
 <div id="wrapper">
 	<div id="main-window">
 		<?php 
-		error_reporting(-1);
+		include_once("php/categories.php"); //edit this file to add additional categories/options.
+		
+		//SWITCH on the actions that the web app does.
 		if (!empty($_GET['action'])) $action = $_GET['action'];
 		else $action = False;
 		
@@ -30,6 +26,9 @@ $classifications = array("Bare", "Track-Bare", "Partially Snow Covered", "Fully 
 			case "deleteunc":
 				include_once("php/removeunc.php");
 				break;
+			case "deletecls":
+				include_once("php/removecls.php");
+				break;
 			case "saveclassify":
 				include_once("php/saveclassification.php");
 				include_once("php/classify.php");
@@ -41,10 +40,15 @@ $classifications = array("Bare", "Track-Bare", "Partially Snow Covered", "Fully 
 			case "browse":
 				include_once("php/browse.php");
 				break;
+			case "downloadzip":
+				include_once("php/downloadzip.php");
+				break;
 			default:
 				include_once("php/classify.php");			
 		}
 		
+		
+		//FUNCTIONs that are used throughout the application.
 		function rrmdir($src) {
 			$dir = opendir($src);
 			while(false !== ( $file = readdir($dir)) ) {
@@ -74,9 +78,11 @@ $classifications = array("Bare", "Track-Bare", "Partially Snow Covered", "Fully 
 				$files[$file] = filemtime($dir . '/' . $file);
 			}
 			
-			arsort($files);
+			/*arsort($files);
+			$files = array_keys($files);*/
 			$files = array_keys($files);
-			
+			sort($files);
+
 			return ($files) ? $files : false;
 		}
 		
