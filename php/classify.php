@@ -100,7 +100,7 @@
 	
 	
 	<br>
-	<span class="item-title">Next 20 Unclassified Files</span>
+	<span class="item-title">Next 20 Unclassified Images</span>
 	<div class="file-item-div">
 		<?php 
 		if (count($unclassified > 1)) {
