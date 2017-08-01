@@ -6,6 +6,12 @@
 	padding:0;
 	font-family: Verdana, Arial, sans-serif;
 }
+h1 {
+	text-align:center;
+	font-size:1.5em;
+	display:block;
+	margin: 0.25em;
+}
 body{
 	/*background-color: #FFFDF5;*/
 	background-color: none;

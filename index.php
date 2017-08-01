@@ -4,10 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="css/default-v000.css">
 	<link rel="stylesheet" type="text/css" href="css/stuff-v000.css">
+	<title>Manual Image Classification System</title>
 </head>
 
 <body>
 <div id="wrapper">
+<h1>Manual Image Classifier</h1>
 	<div id="main-window">
 		<?php 
 		include_once("php/categories.php"); //edit this file to add additional categories/options.

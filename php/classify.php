@@ -1,6 +1,8 @@
 <div id="left">	
 	<div class="infobox">
 		<?php 
+			$pictures_to_preview = 6;
+		
 			if (!empty($_GET['skip'])) $skip = $_GET['skip'];
 			else $skip = 0;
 			$path = 'img/unclassified';
@@ -20,7 +22,7 @@
 			}
 			if (count($unclassified_dir_f) == 0) $unclassified[] = "img/noimg.png";
 			else {
-				for ($i = 0; $i < 21 && $i < count($unclassified_dir_f); $i++) {
+				for ($i = 0; $i < $pictures_to_preview + 1 && $i < count($unclassified_dir_f); $i++) {
 					$unclassified[] = "img/unclassified/" . $unclassified_dir_f[$i];
 				}
 			}
@@ -40,7 +42,7 @@
 		</div>
 	</div>
 	<div class="infobox">
-	<span class="item-title">Classify Image</span>	
+	<span class="section-title">Classify Image</span>	
 		<form style="display:inline-block; margin:0.5em 5%; text-align:left;" <?php echo 'action="index.php?action=saveclassify&img=' . urlencode($file_parts["basename"]) . '&skip=' . $skip . '"';?> method="post">
 		<?php 
 		if ($unclassified[0] == "img/noimg.png") {
@@ -57,14 +59,16 @@
 				}
 			}
 			foreach ($categories as $key => $value) {
-				echo '<br><span class="item-title" style="text-align:left;">' . $key .'</span>';
+				echo '<div class="optionholder">';
+				echo '<span class="item-title" style="text-align:left;">' . $key .'</span>';
 				for ($i = 0; $i < count($value); $i++) {
+					if ($i != 0) echo "<br>";
 					echo '<input type="radio" name="' . $key . '" value="' . (string)$i . '"';
 					if (isset($imgdat[$key . "-numeric"]) && ($imgdat[$key . "-numeric"] == $i)) echo " checked ";
 					echo '> ';
 					echo (string)$value[$i];
-					echo "<br>";
 				}
+				echo '</div>';
 			}
 		}
 		?>
@@ -100,7 +104,7 @@
 	
 	
 	<br>
-	<span class="item-title">Next 20 Unclassified Images</span>
+	<span class="item-title">Next <?php echo $pictures_to_preview; ?> Unclassified Images</span>
 	<div class="file-item-div">
 		<?php 
 		if (count($unclassified > 1)) {
